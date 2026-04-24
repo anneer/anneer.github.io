@@ -253,14 +253,15 @@
   <div class="cta-box">
     <h3 id="cta-box-title">Demo buchen</h3>
     <p id="cta-box-sub">20 Minuten — wir zeigen Ihnen, wie DienstFlow in Ihrem Betrieb aussieht.</p>
-    <div class="cta-form">
-      <input type="text" id="inp-name" placeholder="Ihr Name"/>
-      <input type="text" id="inp-org" placeholder="Einrichtung / Unternehmen"/>
-      <input type="email" id="inp-email" placeholder="E-Mail-Adresse"/>
-      <input type="tel" id="inp-phone" placeholder="Telefonnummer (optional)"/>
-      <button class="cta-submit" id="cta-submit" onclick="handleSubmit()">Demo anfragen →</button>
+    <form class="cta-form" name="demo" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="demo"/>
+      <input type="text" id="inp-name" name="name" placeholder="Ihr Name" required/>
+      <input type="text" id="inp-org" name="organisation" placeholder="Einrichtung / Unternehmen" required/>
+      <input type="email" id="inp-email" name="email" placeholder="E-Mail-Adresse" required/>
+      <input type="tel" id="inp-phone" name="phone" placeholder="Telefonnummer (optional)"/>
+      <button class="cta-submit" id="cta-submit" type="submit">Demo anfragen →</button>
       <p class="cta-note" id="cta-note">Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.</p>
-    </div>
+    </form>
   </div>
 </section>
 
