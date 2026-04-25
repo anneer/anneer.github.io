@@ -253,8 +253,8 @@
   <div class="cta-box">
     <h3 id="cta-box-title">Demo buchen</h3>
     <p id="cta-box-sub">20 Minuten — wir zeigen Ihnen, wie DienstFlow in Ihrem Betrieb aussieht.</p>
-    <form class="cta-form" name="demo" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="demo"/>
+    <form class="cta-form" action="https://formspree.io/f/xkokyapp" method="POST" id="demo-form">
+      
       <input type="text" id="inp-name" name="name" placeholder="Ihr Name" required/>
       <input type="text" id="inp-org" name="organisation" placeholder="Einrichtung / Unternehmen" required/>
       <input type="email" id="inp-email" name="email" placeholder="E-Mail-Adresse" required/>
@@ -262,6 +262,7 @@
       <button class="cta-submit" id="cta-submit" type="submit">Demo anfragen →</button>
       <p class="cta-note" id="cta-note">Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.</p>
     </form>
+    <div id="form-success" style="display:none;text-align:center;padding:24px 0;"><div style="font-size:2rem;margin-bottom:12px;">✓</div><h3 style="font-family:Sora,sans-serif;color:#2f855a;margin-bottom:8px;" id="success-title">Vielen Dank!</h3><p style="color:#3d6670;font-size:0.9rem;" id="success-msg">Wir melden uns innerhalb von 24 Stunden.</p></div>
   </div>
 </section>
 
@@ -416,8 +417,25 @@ function setLang(lang) {
   document.getElementById('vid-thumb-link').href = t['vid-url'];
   document.getElementById('vid-thumb-label').textContent = t['vid-link-text'];
 }
-
 function handleSubmit() { alert(T[currentLang].alert); }
+
+const form = document.getElementById("demo-form");
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  try {
+    const res = await fetch(form.action, { method: "POST", body: data, headers: { "Accept": "application/json" } });
+    if (res.ok) {
+      form.style.display = "none";
+      const s = document.getElementById("form-success");
+      s.style.display = "block";
+      const lang = currentLang;
+      document.getElementById("success-title").textContent = T[lang]["success-title"] || (lang === "en" ? "Thank you!" : lang === "bhs" ? "Hvala!" : "Vielen Dank!");
+      document.getElementById("success-msg").textContent = T[lang]["alert"];
+    }
+  } catch(err) {}
+});
+
 </script>
 </body>
 </html>
