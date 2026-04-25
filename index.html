@@ -43,6 +43,24 @@
   }
   .hero::before { content: ''; position: absolute; top: -40%; left: -10%; width: 500px; height: 500px; background: rgba(90,208,211,0.1); border-radius: 50%; pointer-events: none; }
   .hero::after { content: ''; position: absolute; bottom: -30%; right: -5%; width: 400px; height: 400px; background: rgba(90,208,211,0.08); border-radius: 50%; pointer-events: none; }
+
+  .industry-switcher {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; margin-bottom: 28px;
+  }
+  .ind-btn {
+    background: rgba(90,208,211,0.15); color: var(--aqua);
+    border: 1px solid rgba(90,208,211,0.4);
+    padding: 7px 18px; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.03em;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .ind-btn:hover { background: rgba(90,208,211,0.28); }
+  .ind-btn.active {
+    background: var(--aqua); color: var(--teal-dark);
+    border-color: var(--aqua); font-weight: 600;
+  }
   .hero-tag {
     display: inline-block; background: rgba(90,208,211,0.2); color: var(--aqua);
     border: 1px solid rgba(90,208,211,0.4); padding: 6px 16px; border-radius: 100px;
@@ -126,6 +144,7 @@
   .cta-submit { background: var(--teal); color: white; padding: 14px; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
   .cta-submit:hover { background: var(--teal-dark); }
   .cta-note { font-size: 0.75rem !important; color: #9bb5bc !important; text-align: center; margin-bottom: 0 !important; }
+  .cta-urgency { font-size: 0.8rem; color: #e07b39; font-weight: 600; text-align: center; margin-bottom: 4px; }
 
   footer { background: var(--teal-dark); color: rgba(255,255,255,0.6); padding: 32px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 0.85rem; }
   .footer-logo { font-family: 'Sora', sans-serif; font-weight: 700; color: white; font-size: 1.1rem; }
@@ -154,30 +173,17 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-tag" id="hero-tag">Für das Gesundheitswesen</div>
-  <h1 id="hero-h1">Dienstplanung ohne <span id="hero-span">Tabellen-Chaos</span> und Messenger-Runden</h1>
-  <p id="hero-p">DienstFlow hält Ihre Planung stabil — auch wenn sich Krankmeldungen, Urlaub und kurzfristige Änderungen täglich ändern.</p>
+  <div class="industry-switcher">
+    <button class="ind-btn active" onclick="setIndustry('healthcare')" id="ind-healthcare">Für das Gesundheitswesen</button>
+    <button class="ind-btn" onclick="setIndustry('reinigung')" id="ind-reinigung">Reinigungsdienste</button>
+    <button class="ind-btn" onclick="setIndustry('sicherheit')" id="ind-sicherheit">Sicherheitsdienste</button>
+    <button class="ind-btn" onclick="setIndustry('produktion')" id="ind-produktion">Produktion &amp; Lager</button>
+  </div>
+  <h1 id="hero-h1">Krankmeldung um 6 Uhr morgens. <span id="hero-span">Wer springt ein?</span></h1>
+  <p id="hero-p">DienstFlow gibt Pflegeteams einen klaren Plan — auch wenn sich alles kurzfristig ändert. Kein Tabellen-Chaos, keine Messenger-Runden, keine Rückfragen.</p>
   <div class="hero-btns">
     <a href="#demo" class="btn-primary" id="hero-btn1">Kostenlose Demo buchen</a>
     <a href="#how" class="btn-secondary" id="hero-btn2">Wie es funktioniert</a>
-  </div>
-</section>
-
-<div class="proof-bar" id="proof-bar">
-  <span>✓ Ambulante Pflegedienste</span><span>✓ Intensivpflege-Teams</span><span>✓ Pflegeheime</span><span>✓ Kliniken &amp; Pflegeeinrichtungen</span>
-</div>
-
-<section class="pain">
-  <div class="text-center">
-    <span class="section-label" id="pain-label">Das Problem</span>
-    <h2 class="section-title" id="pain-title">Was manuelle Planung täglich kostet</h2>
-    <p class="section-sub" id="pain-sub">Wer Dienste noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.</p>
-  </div>
-  <div class="pain-grid">
-    <div class="pain-card"><div class="pain-icon">⚡</div><h3 id="p1h">Folgefehler bei Änderungen</h3><p id="p1p">Kurzfristige Änderungen ziehen manuelle Korrekturen nach sich — und jede Korrektur birgt neue Fehler.</p></div>
-    <div class="pain-card"><div class="pain-icon">📞</div><h3 id="p2h">Unnötige Abstimmung</h3><p id="p2p">Abwesenheiten bedeuten Telefonate, Rückfragen und Koordination — die Zeit kostet, die niemand hat.</p></div>
-    <div class="pain-card"><div class="pain-icon">❓</div><h3 id="p3h">Team fragt ständig nach</h3><p id="p3p">Mitarbeitende wissen nicht, was gilt. Der aktuelle Stand ist immer unklar — bis jemand nachfragt.</p></div>
-    <div class="pain-card"><div class="pain-icon">👤</div><h3 id="p4h">Planung hängt an einer Person</h3><p id="p4p">Wenn die Planerin krank wird, steht alles still. Wissen und Überblick liegen bei wenigen Köpfen.</p></div>
   </div>
 </section>
 
@@ -202,6 +208,25 @@
     </div>
   </div>
 </section>
+
+<div class="proof-bar" id="proof-bar">
+  <span>✓ Ambulante Pflegedienste</span><span>✓ Intensivpflege-Teams</span><span>✓ Pflegeheime</span><span>✓ Kliniken &amp; Pflegeeinrichtungen</span>
+</div>
+
+<section class="pain">
+  <div class="text-center">
+    <span class="section-label" id="pain-label">Das Problem</span>
+    <h2 class="section-title" id="pain-title">Was manuelle Planung täglich kostet</h2>
+    <p class="section-sub" id="pain-sub">Wer Dienste noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card"><div class="pain-icon">⚡</div><h3 id="p1h">Folgefehler bei Änderungen</h3><p id="p1p">Kurzfristige Änderungen ziehen manuelle Korrekturen nach sich — und jede Korrektur birgt neue Fehler.</p></div>
+    <div class="pain-card"><div class="pain-icon">📞</div><h3 id="p2h">Unnötige Abstimmung</h3><p id="p2p">Abwesenheiten bedeuten Telefonate, Rückfragen und Koordination — die Zeit kostet, die niemand hat.</p></div>
+    <div class="pain-card"><div class="pain-icon">❓</div><h3 id="p3h">Team fragt ständig nach</h3><p id="p3p">Mitarbeitende wissen nicht, was gilt. Der aktuelle Stand ist immer unklar — bis jemand nachfragt.</p></div>
+    <div class="pain-card"><div class="pain-icon">👤</div><h3 id="p4h">Planung hängt an einer Person</h3><p id="p4p">Wenn die Planerin krank wird, steht alles still. Wissen und Überblick liegen bei wenigen Köpfen.</p></div>
+  </div>
+</section>
+
 
 <section class="how" id="how">
   <div class="text-center">
@@ -239,10 +264,10 @@
     <p class="section-sub" id="who-sub">DienstFlow ist auf die realen Herausforderungen der Gesundheitsplanung ausgelegt — nicht auf den Durchschnittsfall.</p>
   </div>
   <div class="who-grid">
-    <div class="who-card"><span>🏥</span><p id="w1">Ambulante Pflegedienste</p></div>
-    <div class="who-card"><span>💉</span><p id="w2">Intensivpflege-Teams</p></div>
-    <div class="who-card"><span>🏠</span><p id="w3">Pflegeheime</p></div>
-    <div class="who-card"><span>🏨</span><p id="w4">Kliniken &amp; Pflegeeinrichtungen</p></div>
+    <div class="who-card"><span id="w1-icon">🏥</span><p id="w1">Ambulante Pflegedienste</p></div>
+    <div class="who-card"><span id="w2-icon">💉</span><p id="w2">Intensivpflege-Teams</p></div>
+    <div class="who-card"><span id="w3-icon">🏠</span><p id="w3">Pflegeheime</p></div>
+    <div class="who-card"><span id="w4-icon">🏨</span><p id="w4">Kliniken &amp; Pflegeeinrichtungen</p></div>
   </div>
 </section>
 
@@ -256,9 +281,8 @@
     <form class="cta-form" action="https://formspree.io/f/xkokyapp" method="POST" id="demo-form">
       
       <input type="text" id="inp-name" name="name" placeholder="Ihr Name" required/>
-      <input type="text" id="inp-org" name="organisation" placeholder="Einrichtung / Unternehmen" required/>
       <input type="email" id="inp-email" name="email" placeholder="E-Mail-Adresse" required/>
-      <input type="tel" id="inp-phone" name="phone" placeholder="Telefonnummer (optional)"/>
+      <p class="cta-urgency" id="cta-urgency">⚡ Wir nehmen derzeit nur 5 neue Betriebe pro Monat an.</p>
       <button class="cta-submit" id="cta-submit" type="submit">Demo anfragen →</button>
       <p class="cta-note" id="cta-note">Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.</p>
     </form>
@@ -277,8 +301,8 @@ const T = {
   de: {
     lang:"de", title:"DienstFlow – Dienstplanung für das Gesundheitswesen",
     "nav-cta-text":"Demo buchen","hero-tag":"Für das Gesundheitswesen",
-    "hero-h1":'Dienstplanung ohne <span id="hero-span">Tabellen-Chaos</span> und Messenger-Runden',
-    "hero-p":"DienstFlow hält Ihre Planung stabil — auch wenn sich Krankmeldungen, Urlaub und kurzfristige Änderungen täglich ändern.",
+    "hero-h1":"Krankmeldung um 6 Uhr morgens. <span id=\"hero-span\">Wer springt ein?</span>",
+    "hero-p":"DienstFlow gibt Pflegeteams einen klaren Plan — auch wenn sich alles kurzfristig ändert. Kein Tabellen-Chaos, keine Messenger-Runden, keine Rückfragen.",
     "hero-btn1":"Kostenlose Demo buchen","hero-btn2":"Wie es funktioniert",
     "proof-bar":"<span>✓ Ambulante Pflegedienste</span><span>✓ Intensivpflege-Teams</span><span>✓ Pflegeheime</span><span>✓ Kliniken &amp; Pflegeeinrichtungen</span>",
     "pain-label":"Das Problem","pain-title":"Was manuelle Planung täglich kostet",
@@ -309,15 +333,15 @@ const T = {
     "cta-label":"Kostenlos starten","cta-title":"Sehen Sie DienstFlow mit Ihrem echten Setup",
     "cta-sub":"Wir richten Ihren ersten echten Dienstplan kostenlos ein — angepasst an Ihre Mitarbeitenden, Ihre Regeln, Ihre Struktur.",
     "cta-box-title":"Demo buchen","cta-box-sub":"20 Minuten — wir zeigen Ihnen, wie DienstFlow in Ihrem Betrieb aussieht.",
-    "inp-name":"Ihr Name","inp-org":"Einrichtung / Unternehmen","inp-email":"E-Mail-Adresse","inp-phone":"Telefonnummer (optional)",
+    "inp-name":"Ihr Name","inp-email":"E-Mail-Adresse","cta-urgency":"⚡ Wir nehmen derzeit nur 5 neue Betriebe pro Monat an.",
     "cta-submit":"Demo anfragen →","cta-note":"Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.",
     "footer-tagline":"Entwickelt für das Gesundheitswesen","alert":"Vielen Dank! Wir melden uns innerhalb von 24 Stunden."
   },
   en: {
     lang:"en", title:"DienstFlow – Shift Planning for Healthcare",
     "nav-cta-text":"Book a demo","hero-tag":"For healthcare",
-    "hero-h1":'Shift planning without <span id="hero-span">spreadsheet chaos</span> and messenger rounds',
-    "hero-p":"DienstFlow keeps your scheduling stable — even when sick calls, holidays, and last-minute changes happen every day.",
+    "hero-h1":"Sick call at 6 AM. <span id=\"hero-span\">Who covers the shift?</span>",
+    "hero-p":"DienstFlow gives care teams a clear plan — even when everything changes last minute. No spreadsheet chaos, no messenger rounds, no back-and-forth.",
     "hero-btn1":"Book a free demo","hero-btn2":"How it works",
     "proof-bar":"<span>✓ Outpatient care services</span><span>✓ Intensive care teams</span><span>✓ Care homes</span><span>✓ Clinics &amp; care facilities</span>",
     "pain-label":"The problem","pain-title":"What manual scheduling costs every day",
@@ -348,15 +372,15 @@ const T = {
     "cta-label":"Get started free","cta-title":"See DienstFlow with your actual setup",
     "cta-sub":"We set up your first real schedule for free — adapted to your staff, your rules, your structure.",
     "cta-box-title":"Book a demo","cta-box-sub":"20 minutes — we show you how DienstFlow works in your facility.",
-    "inp-name":"Your name","inp-org":"Facility / Organisation","inp-email":"Email address","inp-phone":"Phone number (optional)",
+    "inp-name":"Your name","inp-email":"Email address","cta-urgency":"⚡ Currently onboarding only 5 new facilities per month.",
     "cta-submit":"Request demo →","cta-note":"No commitment. Free setup included.",
     "footer-tagline":"Built for healthcare","alert":"Thank you! We'll be in touch within 24 hours."
   },
   bhs: {
     lang:"bs", title:"DienstFlow – Planiranje smjena za zdravstvo",
     "nav-cta-text":"Zakažite demo","hero-tag":"Za zdravstveni sektor",
-    "hero-h1":'Planiranje smjena bez <span id="hero-span">haosa u tabelama</span> i poruka u grupama',
-    "hero-p":"DienstFlow održava vaše planiranje stabilnim — čak i kada se bolovanja, godišnji odmori i hitne promjene dešavaju svaki dan.",
+    "hero-h1":"Bolovanje u 6 ujutro. <span id=\"hero-span\">Ko preuzima smjenu?</span>",
+    "hero-p":"DienstFlow daje timovima jasan plan — čak i kada se sve mijenja u posljednji trenutak. Bez haosa u tabelama, bez poruka u grupama, bez pitanja.",
     "hero-btn1":"Zakažite besplatan demo","hero-btn2":"Kako funkcioniše",
     "proof-bar":"<span>✓ Ambulantne njege</span><span>✓ Timovi intenzivne njege</span><span>✓ Domovi za starije</span><span>✓ Klinike i ustanove njege</span>",
     "pain-label":"Problem","pain-title":"Šta ručno planiranje košta svaki dan",
@@ -387,7 +411,7 @@ const T = {
     "cta-label":"Počnite besplatno","cta-title":"Pogledajte DienstFlow sa vašim stvarnim postavkama",
     "cta-sub":"Postavljamo vaš prvi pravi raspored besplatno — prilagođen vašem osoblju, vašim pravilima, vašoj strukturi.",
     "cta-box-title":"Zakažite demo","cta-box-sub":"20 minuta — pokazujemo vam kako DienstFlow funkcioniše u vašoj ustanovi.",
-    "inp-name":"Vaše ime","inp-org":"Ustanova / Organizacija","inp-email":"E-mail adresa","inp-phone":"Broj telefona (opcionalno)",
+    "inp-name":"Vaše ime","inp-email":"E-mail adresa","cta-urgency":"⚡ Trenutno primamo samo 5 novih ustanova mjesečno.",
     "cta-submit":"Zatražite demo →","cta-note":"Bez obaveza. Besplatno postavljanje uključeno.",
     "footer-tagline":"Razvijeno za zdravstveni sektor","alert":"Hvala! Javit ćemo se u roku od 24 sata."
   }
@@ -399,7 +423,7 @@ const textIds = ["nav-cta-text","hero-tag","hero-p","hero-btn1","hero-btn2",
   "how-label","how-title","how-sub","s1h","s1p","s2h","s2p","s3h","s3p","s4h","s4p",
   "feat-label","feat-title","f1h","f1p","f2h","f2p","f3h","f3p","f4h","f4p","f5h","f5p","f6h","f6p",
   "who-label","who-title","who-sub","w1","w2","w3","w4",
-  "cta-label","cta-title","cta-sub","cta-box-title","cta-box-sub","cta-submit","cta-note","footer-tagline"];
+  "cta-label","cta-title","cta-sub","cta-box-title","cta-box-sub","cta-urgency","cta-submit","cta-note","footer-tagline"];
 
 let currentLang = 'de';
 
@@ -412,10 +436,11 @@ function setLang(lang) {
   textIds.forEach(id => { const el = document.getElementById(id); if(el && t[id]) el.textContent = t[id]; });
   document.getElementById('hero-h1').innerHTML = t['hero-h1'];
   document.getElementById('proof-bar').innerHTML = t['proof-bar'];
-  ['inp-name','inp-org','inp-email','inp-phone'].forEach(id => { const el=document.getElementById(id); if(el && t[id]) el.placeholder=t[id]; });
+  ['inp-name','inp-email'].forEach(id => { const el=document.getElementById(id); if(el && t[id]) el.placeholder=t[id]; });
   document.getElementById('vid-link').href = t['vid-url'];
   document.getElementById('vid-thumb-link').href = t['vid-url'];
   document.getElementById('vid-thumb-label').textContent = t['vid-link-text'];
+  setIndustry(currentIndustry);
 }
 function handleSubmit() { alert(T[currentLang].alert); }
 
@@ -435,6 +460,287 @@ form.addEventListener("submit", async function(e) {
     }
   } catch(err) {}
 });
+
+
+// ── INDUSTRY DATA ──────────────────────────────────────────────
+const industries = {
+  healthcare: {
+    de: {
+      "ind-label": "Für das Gesundheitswesen",
+      "hero-h1": "Krankmeldung um 6 Uhr morgens. <span id=\"hero-span\">Wer springt ein?</span>",
+      "hero-p": "DienstFlow gibt Pflegeteams einen klaren Plan — auch wenn sich alles kurzfristig ändert. Kein Tabellen-Chaos, keine Messenger-Runden, keine Rückfragen.",
+      "proof-bar": "<span>✓ Ambulante Pflegedienste</span><span>✓ Intensivpflege-Teams</span><span>✓ Pflegeheime</span><span>✓ Kliniken &amp; Pflegeeinrichtungen</span>",
+      "pain-sub": "Wer Dienste noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.",
+      "p1h": "Folgefehler bei Änderungen", "p1p": "Kurzfristige Änderungen ziehen manuelle Korrekturen nach sich — und jede Korrektur birgt neue Fehler.",
+      "p2h": "Unnötige Abstimmung", "p2p": "Abwesenheiten bedeuten Telefonate, Rückfragen und Koordination — die Zeit kostet, die niemand hat.",
+      "p3h": "Team fragt ständig nach", "p3p": "Mitarbeitende wissen nicht, was gilt. Der aktuelle Stand ist immer unklar — bis jemand nachfragt.",
+      "p4h": "Planung hängt an einer Person", "p4p": "Wenn die Planerin krank wird, steht alles still. Wissen und Überblick liegen bei wenigen Köpfen.",
+      "feat-title": "Alles, was Pflegeteams brauchen",
+      "who-title": "Entwickelt für Einrichtungen, die täglich planen",
+      "who-sub": "DienstFlow ist auf die realen Herausforderungen der Gesundheitsplanung ausgelegt — nicht auf den Durchschnittsfall.",
+      "w1-icon": "🏥", "w1": "Ambulante Pflegedienste",
+      "w2-icon": "💉", "w2": "Intensivpflege-Teams",
+      "w3-icon": "🏠", "w3": "Pflegeheime",
+      "w4-icon": "🏨", "w4": "Kliniken & Pflegeeinrichtungen",
+      "footer-tagline": "Entwickelt für das Gesundheitswesen"
+    },
+    en: {
+      "ind-label": "For healthcare",
+      "hero-h1": "Sick call at 6 AM. <span id=\"hero-span\">Who covers the shift?</span>",
+      "hero-p": "DienstFlow gives care teams a clear plan — even when everything changes last minute. No spreadsheet chaos, no messenger rounds, no back-and-forth.",
+      "proof-bar": "<span>✓ Outpatient care services</span><span>✓ Intensive care teams</span><span>✓ Care homes</span><span>✓ Clinics &amp; care facilities</span>",
+      "pain-sub": "Anyone still coordinating shifts via spreadsheets, phone calls, or messenger groups knows these problems.",
+      "p1h": "Cascading errors from changes", "p1p": "Last-minute changes trigger manual corrections — and every correction risks new mistakes.",
+      "p2h": "Unnecessary back-and-forth", "p2p": "Absences mean phone calls, follow-up questions, and coordination — time nobody has.",
+      "p3h": "Team constantly asking for updates", "p3p": "Staff don't know what's current. The latest schedule is always unclear — until someone asks.",
+      "p4h": "Planning depends on one person", "p4p": "When the scheduler is sick, everything stops. Knowledge and overview sit with just a few people.",
+      "feat-title": "Everything care teams need",
+      "who-title": "Built for facilities that schedule every day",
+      "who-sub": "DienstFlow is designed for the real challenges of healthcare scheduling — not the average case.",
+      "w1-icon": "🏥", "w1": "Outpatient care services",
+      "w2-icon": "💉", "w2": "Intensive care teams",
+      "w3-icon": "🏠", "w3": "Care homes",
+      "w4-icon": "🏨", "w4": "Clinics & care facilities",
+      "footer-tagline": "Built for healthcare"
+    },
+    bhs: {
+      "ind-label": "Za zdravstveni sektor",
+      "hero-h1": "Bolovanje u 6 ujutro. <span id=\"hero-span\">Ko preuzima smjenu?</span>",
+      "hero-p": "DienstFlow daje timovima jasan plan — čak i kada se sve mijenja u posljednji trenutak. Bez haosa u tabelama, bez poruka u grupama, bez pitanja.",
+      "proof-bar": "<span>✓ Ambulantne njege</span><span>✓ Timovi intenzivne njege</span><span>✓ Domovi za starije</span><span>✓ Klinike i ustanove njege</span>",
+      "pain-sub": "Ko još uvijek koordinira smjene putem tabela, telefonskih poziva ili messenger grupa, poznaje ove probleme.",
+      "p1h": "Greške koje se šire od promjena", "p1p": "Hitne promjene zahtijevaju ručne ispravke — a svaka ispravka nosi rizik novih grešaka.",
+      "p2h": "Nepotrebna koordinacija", "p2p": "Odsustva znače telefonske pozive, pitanja i koordinaciju — vrijeme koje niko nema.",
+      "p3h": "Tim stalno pita za ažuriranja", "p3p": "Zaposlenici ne znaju šta važi. Trenutno stanje je uvijek nejasno — dok neko ne pita.",
+      "p4h": "Planiranje ovisi o jednoj osobi", "p4p": "Kada planer nije na poslu, sve staje. Znanje i pregled su kod samo nekoliko osoba.",
+      "feat-title": "Sve što timovi njege trebaju",
+      "who-title": "Razvijeno za ustanove koje planiraju svaki dan",
+      "who-sub": "DienstFlow je dizajniran za stvarne izazove planiranja u zdravstvu — ne za prosječan slučaj.",
+      "w1-icon": "🏥", "w1": "Ambulantne njege",
+      "w2-icon": "💉", "w2": "Timovi intenzivne njege",
+      "w3-icon": "🏠", "w3": "Domovi za starije",
+      "w4-icon": "🏨", "w4": "Klinike i ustanove njege",
+      "footer-tagline": "Razvijeno za zdravstveni sektor"
+    }
+  },
+  reinigung: {
+    de: {
+      "ind-label": "Für Reinigungsdienste",
+      "hero-h1": "Mitarbeiter erscheint nicht. <span id=\"hero-span\">Objekt bleibt ungereinigt.</span>",
+      "hero-p": "DienstFlow gibt Reinigungsteams einen klaren Plan — auch wenn Mitarbeitende kurzfristig ausfallen. Kein Tabellen-Chaos, keine Telefonketten, keine ungereingten Objekte.",
+      "proof-bar": "<span>✓ Gebäudereinigung</span><span>✓ Industriereinigung</span><span>✓ Facility Management</span><span>✓ Reinigungsunternehmen</span>",
+      "pain-sub": "Wer Schichten noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.",
+      "p1h": "Kurzfristiger Ausfall, unbesetztes Objekt", "p1p": "Fällt ein Mitarbeiter aus, bleibt das Objekt ungereinigt — oder jemand muss spontan einspringen, ohne Plan.",
+      "p2h": "Endlose Telefonkette", "p2p": "Jeder Ausfall startet eine Runde Anrufe. Wer kann? Wer ist verfügbar? Wer geht nicht ans Telefon?",
+      "p3h": "Unklare Objektzuständigkeit", "p3p": "Mitarbeitende wissen nicht, welches Objekt, welche Schicht, welche Aufgabe. Rückfragen kosten täglich Zeit.",
+      "p4h": "Alles hängt am Disponenten", "p4p": "Wenn der Disponent fehlt, weiß niemand, wer wo eingeteilt ist. Der Betrieb hängt an einer Person.",
+      "feat-title": "Alles, was Reinigungsteams brauchen",
+      "who-title": "Entwickelt für Teams, die täglich planen",
+      "who-sub": "DienstFlow passt sich Ihrer Struktur an — egal ob 5 oder 500 Mitarbeitende.",
+      "w1-icon": "🏢", "w1": "Gebäudereinigung",
+      "w2-icon": "🏭", "w2": "Industriereinigung",
+      "w3-icon": "🏗️", "w3": "Facility Management",
+      "w4-icon": "🧹", "w4": "Reinigungsunternehmen",
+      "footer-tagline": "Entwickelt für Reinigungsdienste"
+    },
+    en: {
+      "ind-label": "For cleaning services",
+      "hero-h1": "Staff didn't show up. <span id=\"hero-span\">Building stays uncleaned.</span>",
+      "hero-p": "DienstFlow gives cleaning teams a clear plan — even when staff call out last minute. No spreadsheet chaos, no phone chains, no missed buildings.",
+      "proof-bar": "<span>✓ Building Cleaning</span><span>✓ Industrial Cleaning</span><span>✓ Facility Management</span><span>✓ Cleaning Companies</span>",
+      "pain-sub": "Anyone still coordinating shifts via spreadsheets, phone calls, or messenger groups knows these problems.",
+      "p1h": "Absent staff, uncleaned building", "p1p": "When someone calls out, the building goes uncleaned — or someone scrambles to cover with no clear plan.",
+      "p2h": "Endless phone chain", "p2p": "Every absence starts a round of calls. Who's available? Who can cover? Who isn't picking up?",
+      "p3h": "Unclear object assignments", "p3p": "Staff don't know which building, which shift, which tasks. Questions waste time every single day.",
+      "p4h": "Everything depends on the dispatcher", "p4p": "When the dispatcher is out, nobody knows who is assigned where. One person holds it all together.",
+      "feat-title": "Everything cleaning teams need",
+      "who-title": "Built for teams that schedule every day",
+      "who-sub": "DienstFlow adapts to your structure — whether you have 5 or 500 employees.",
+      "w1-icon": "🏢", "w1": "Building Cleaning",
+      "w2-icon": "🏭", "w2": "Industrial Cleaning",
+      "w3-icon": "🏗️", "w3": "Facility Management",
+      "w4-icon": "🧹", "w4": "Cleaning Companies",
+      "footer-tagline": "Built for cleaning services"
+    },
+    bhs: {
+      "ind-label": "Za usluge čišćenja",
+      "hero-h1": "Radnik se nije pojavio. <span id=\"hero-span\">Objekat ostaje neočišćen.</span>",
+      "hero-p": "DienstFlow daje timovima za čišćenje jasan plan — čak i kada radnici otkazuju u posljednjem trenutku. Bez haosa u tabelama, bez telefonskih lanaca.",
+      "proof-bar": "<span>✓ Čišćenje zgrada</span><span>✓ Industrijsko čišćenje</span><span>✓ Facility Management</span><span>✓ Firme za čišćenje</span>",
+      "pain-sub": "Ko još uvijek koordinira smjene putem tabela, telefonskih poziva ili messenger grupa, poznaje ove probleme.",
+      "p1h": "Odsutni radnik, neočišćeni objekat", "p1p": "Kada neko otkaže, objekat ostaje neočišćen — ili neko mora spontano preuzeti bez jasnog plana.",
+      "p2h": "Beskrajni telefonski lanci", "p2p": "Svaki izostanak pokreće krug poziva. Ko je slobodan? Ko može preuzeti? Ko ne diže telefon?",
+      "p3h": "Nejasna raspodjela objekata", "p3p": "Radnici ne znaju koji objekat, koja smjena, koji zadaci. Pitanja svakodnevno troše vrijeme.",
+      "p4h": "Sve ovisi o dispečeru", "p4p": "Kada dispečer nedostaje, niko ne zna ko je raspoređen gdje. Jedan čovjek drži sve zajedno.",
+      "feat-title": "Sve što timovi za čišćenje trebaju",
+      "who-title": "Razvijeno za timove koji planiraju svaki dan",
+      "who-sub": "DienstFlow se prilagođava vašoj strukturi — bez obzira imate li 5 ili 500 zaposlenika.",
+      "w1-icon": "🏢", "w1": "Čišćenje zgrada",
+      "w2-icon": "🏭", "w2": "Industrijsko čišćenje",
+      "w3-icon": "🏗️", "w3": "Facility Management",
+      "w4-icon": "🧹", "w4": "Firme za čišćenje",
+      "footer-tagline": "Razvijeno za usluge čišćenja"
+    }
+  },
+  sicherheit: {
+    de: {
+      "ind-label": "Für Sicherheitsdienste",
+      "hero-h1": "Posten unbesetzt um Mitternacht. <span id=\"hero-span\">Wer übernimmt?</span>",
+      "hero-p": "DienstFlow sorgt dafür, dass jeder Posten besetzt ist — auch wenn sich kurzfristig etwas ändert. Keine Sicherheitslücken durch Planungschaos.",
+      "proof-bar": "<span>✓ Wachdienste</span><span>✓ Objektschutz</span><span>✓ Veranstaltungsschutz</span><span>✓ Werkschutz</span>",
+      "pain-sub": "Wer Schichten noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.",
+      "p1h": "Unbesetzte Posten, sofortiges Risiko", "p1p": "Ein Ausfall bedeutet direkt ein Sicherheitsrisiko. Manuell einen Ersatz zu finden kostet wertvolle Minuten.",
+      "p2h": "Nachtschicht-Chaos", "p2p": "Ausfälle um Mitternacht bedeuten Anrufe, gestresste Disponenten und schlaflose Nächte für alle.",
+      "p3h": "Unklare Postenbesetzung", "p3p": "Wer hat welche Qualifikation für welchen Posten? Jede Schicht beginnt mit Rückfragen und Unsicherheit.",
+      "p4h": "Disponent als Flaschenhals", "p4p": "Alle Änderungen laufen über eine Person. Fällt sie aus, ist kein Posten mehr sicher besetzt.",
+      "feat-title": "Alles, was Sicherheitsteams brauchen",
+      "who-title": "Entwickelt für Teams, die täglich planen",
+      "who-sub": "DienstFlow passt sich Ihrer Struktur an — egal ob 5 oder 500 Mitarbeitende.",
+      "w1-icon": "🔒", "w1": "Wachdienste",
+      "w2-icon": "🏢", "w2": "Objektschutz",
+      "w3-icon": "🎪", "w3": "Veranstaltungsschutz",
+      "w4-icon": "🏭", "w4": "Werkschutz",
+      "footer-tagline": "Entwickelt für Sicherheitsdienste"
+    },
+    en: {
+      "ind-label": "For security services",
+      "hero-h1": "Guard post unmanned at midnight. <span id=\"hero-span\">Who takes over?</span>",
+      "hero-p": "DienstFlow makes sure every guard post is covered — even when things change last minute. No security gaps because of scheduling chaos.",
+      "proof-bar": "<span>✓ Guard Services</span><span>✓ Property Security</span><span>✓ Event Security</span><span>✓ Plant Security</span>",
+      "pain-sub": "Anyone still coordinating shifts via spreadsheets, phone calls, or messenger groups knows these problems.",
+      "p1h": "Unmanned post, immediate risk", "p1p": "One absence means an immediate security risk. Finding a replacement manually wastes critical minutes.",
+      "p2h": "Midnight shift chaos", "p2p": "Late-night absences mean calls, stressed dispatchers, and sleepless nights for everyone involved.",
+      "p3h": "Unclear post assignments", "p3p": "Who has which qualification for which post? Every shift starts with questions and uncertainty.",
+      "p4h": "Dispatcher as bottleneck", "p4p": "All changes run through one person. When they're out, no post is safely covered.",
+      "feat-title": "Everything security teams need",
+      "who-title": "Built for teams that schedule every day",
+      "who-sub": "DienstFlow adapts to your structure — whether you have 5 or 500 employees.",
+      "w1-icon": "🔒", "w1": "Guard Services",
+      "w2-icon": "🏢", "w2": "Property Security",
+      "w3-icon": "🎪", "w3": "Event Security",
+      "w4-icon": "🏭", "w4": "Plant Security",
+      "footer-tagline": "Built for security services"
+    },
+    bhs: {
+      "ind-label": "Za sigurnosne službe",
+      "hero-h1": "Stražarsko mjesto nepokriveno u ponoć. <span id=\"hero-span\">Ko preuzima?</span>",
+      "hero-p": "DienstFlow osigurava da je svako stražarsko mjesto pokriveno — čak i kada se stvari mijenjaju u posljednjem trenutku. Bez sigurnosnih propusta zbog haosa u planiranju.",
+      "proof-bar": "<span>✓ Čuvarske službe</span><span>✓ Zaštita objekata</span><span>✓ Zaštita događaja</span><span>✓ Tvorničko osiguranje</span>",
+      "pain-sub": "Ko još uvijek koordinira smjene putem tabela, telefonskih poziva ili messenger grupa, poznaje ove probleme.",
+      "p1h": "Nepokriveno stražarsko mjesto, trenutni rizik", "p1p": "Jedan izostanak znači trenutni sigurnosni rizik. Ručno pronalaženje zamjene troši dragocjene minute.",
+      "p2h": "Haos u noćnoj smjeni", "p2p": "Izostanci u ponoć znače pozive, stresne dispečere i neprospavane noći za sve.",
+      "p3h": "Nejasna raspodjela mjesta", "p3p": "Ko ima koje kvalifikacije za koje stražarsko mjesto? Svaka smjena počinje pitanjima i nesigurnošću.",
+      "p4h": "Dispečer kao usko grlo", "p4p": "Sve promjene prolaze kroz jednu osobu. Kada ona nedostaje, nijedan post nije sigurno pokriven.",
+      "feat-title": "Sve što sigurnosni timovi trebaju",
+      "who-title": "Razvijeno za timove koji planiraju svaki dan",
+      "who-sub": "DienstFlow se prilagođava vašoj strukturi — bez obzira imate li 5 ili 500 zaposlenika.",
+      "w1-icon": "🔒", "w1": "Čuvarske službe",
+      "w2-icon": "🏢", "w2": "Zaštita objekata",
+      "w3-icon": "🎪", "w3": "Zaštita događaja",
+      "w4-icon": "🏭", "w4": "Tvorničko osiguranje",
+      "footer-tagline": "Razvijeno za sigurnosne službe"
+    }
+  },
+  produktion: {
+    de: {
+      "ind-label": "Für Produktion & Lager",
+      "hero-h1": "Schicht beginnt in einer Stunde. <span id=\"hero-span\">Drei Plätze offen.</span>",
+      "hero-p": "DienstFlow hält Ihre Schichtplanung stabil — auch wenn Mitarbeitende kurzfristig ausfallen. Keine Produktionsstopps durch Planungschaos.",
+      "proof-bar": "<span>✓ Produktion</span><span>✓ Lager &amp; Logistik</span><span>✓ Montage</span><span>✓ Schichtbetrieb</span>",
+      "pain-sub": "Wer Schichten noch über Tabellen, Telefonate oder Messenger-Gruppen koordiniert, kennt diese Probleme.",
+      "p1h": "Produktionsstopp durch Ausfall", "p1p": "Fehlende Mitarbeitende können die gesamte Schicht lahmlegen. Jede Minute ungeplanter Stillstand kostet.",
+      "p2h": "Manuelle Ersatzsuche unter Druck", "p2p": "Bei jedem Ausfall beginnt die Telefonrunde von vorne. Wer ist verfügbar? Wer kann spontan einspringen?",
+      "p3h": "3-Schicht-System ohne Überblick", "p3p": "Früh-, Spät- und Nachtschicht gleichzeitig im Blick zu behalten ist mit Tabellen kaum möglich.",
+      "p4h": "Schichtleiter als Engpass", "p4p": "Alle Änderungen laufen über den Schichtleiter. Urlaub oder Krankheit blockiert den ganzen Betrieb.",
+      "feat-title": "Alles, was Produktionsteams brauchen",
+      "who-title": "Entwickelt für Teams, die täglich planen",
+      "who-sub": "DienstFlow passt sich Ihrer Struktur an — egal ob 5 oder 500 Mitarbeitende.",
+      "w1-icon": "🏭", "w1": "Produktion",
+      "w2-icon": "📦", "w2": "Lager & Logistik",
+      "w3-icon": "🔧", "w3": "Montage",
+      "w4-icon": "🔄", "w4": "Schichtbetrieb",
+      "footer-tagline": "Entwickelt für Produktion & Lager"
+    },
+    en: {
+      "ind-label": "For production & warehousing",
+      "hero-h1": "Shift starts in an hour. <span id=\"hero-span\">Three spots open.</span>",
+      "hero-p": "DienstFlow keeps your shift schedule stable — even when staff call out last minute. No production stops because of scheduling chaos.",
+      "proof-bar": "<span>✓ Production</span><span>✓ Warehousing &amp; Logistics</span><span>✓ Assembly</span><span>✓ Shift Operations</span>",
+      "pain-sub": "Anyone still coordinating shifts via spreadsheets, phone calls, or messenger groups knows these problems.",
+      "p1h": "Production stop from one absence", "p1p": "Missing staff can shut down an entire shift. Every minute of unplanned downtime has a cost.",
+      "p2h": "Manual replacement under pressure", "p2p": "Every absence restarts the phone chain. Who's available? Who can cover on short notice?",
+      "p3h": "3-shift system with no overview", "p3p": "Keeping morning, afternoon, and night shifts in view at once is nearly impossible with spreadsheets.",
+      "p4h": "Shift leader as bottleneck", "p4p": "All changes run through the shift leader. Holiday or sick leave blocks the whole operation.",
+      "feat-title": "Everything production teams need",
+      "who-title": "Built for teams that schedule every day",
+      "who-sub": "DienstFlow adapts to your structure — whether you have 5 or 500 employees.",
+      "w1-icon": "🏭", "w1": "Production",
+      "w2-icon": "📦", "w2": "Warehousing & Logistics",
+      "w3-icon": "🔧", "w3": "Assembly",
+      "w4-icon": "🔄", "w4": "Shift Operations",
+      "footer-tagline": "Built for production & warehousing"
+    },
+    bhs: {
+      "ind-label": "Za proizvodnju i skladište",
+      "hero-h1": "Smjena počinje za sat vremena. <span id=\"hero-span\">Tri mjesta slobodna.</span>",
+      "hero-p": "DienstFlow održava vaš raspored smjena stabilnim — čak i kada radnici otkazuju u posljednjem trenutku. Bez zastoja u proizvodnji zbog haosa u planiranju.",
+      "proof-bar": "<span>✓ Proizvodnja</span><span>✓ Skladište &amp; Logistika</span><span>✓ Montaža</span><span>✓ Smjenski rad</span>",
+      "pain-sub": "Ko još uvijek koordinira smjene putem tabela, telefonskih poziva ili messenger grupa, poznaje ove probleme.",
+      "p1h": "Zastoj u proizvodnji zbog izostanka", "p1p": "Odsutni radnici mogu zaustaviti cijelu smjenu. Svaka minuta neplanirane pauze ima svoju cijenu.",
+      "p2h": "Ručno traženje zamjene pod pritiskom", "p2p": "Svaki izostanak ponovo pokreće telefonski lanac. Ko je slobodan? Ko može spontano preuzeti?",
+      "p3h": "3-smjenski sistem bez pregleda", "p3p": "Pratiti jutarnju, poslijepodnevnu i noćnu smjenu istovremeno gotovo je nemoguće s tabelama.",
+      "p4h": "Vođa smjene kao usko grlo", "p4p": "Sve promjene prolaze kroz vođu smjene. Godišnji odmor ili bolovanje blokira cijeli pogon.",
+      "feat-title": "Sve što proizvodni timovi trebaju",
+      "who-title": "Razvijeno za timove koji planiraju svaki dan",
+      "who-sub": "DienstFlow se prilagođava vašoj strukturi — bez obzira imate li 5 ili 500 zaposlenika.",
+      "w1-icon": "🏭", "w1": "Proizvodnja",
+      "w2-icon": "📦", "w2": "Skladište & Logistika",
+      "w3-icon": "🔧", "w3": "Montaža",
+      "w4-icon": "🔄", "w4": "Smjenski rad",
+      "footer-tagline": "Razvijeno za proizvodnju i skladište"
+    }
+  }
+};
+
+let currentIndustry = 'healthcare';
+
+const industryIds = ["hero-h1","hero-p","proof-bar","pain-sub",
+  "p1h","p1p","p2h","p2p","p3h","p3p","p4h","p4p",
+  "feat-title","who-title","who-sub",
+  "w1-icon","w1","w2-icon","w2","w3-icon","w3","w4-icon","w4","footer-tagline"];
+
+function setIndustry(ind) {
+  currentIndustry = ind;
+  const t = industries[ind][currentLang] || industries[ind]['de'];
+
+  // Update switcher buttons
+  document.querySelectorAll('.ind-btn').forEach(b => {
+    b.classList.toggle('active', b.id === 'ind-' + ind);
+  });
+
+  // Apply content
+  industryIds.forEach(id => {
+    if (!t[id]) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (id === 'hero-h1' || id === 'proof-bar') {
+      el.innerHTML = t[id];
+    } else {
+      el.textContent = t[id];
+    }
+  });
+
+  // Update industry switcher button labels per language
+  updateIndLabels();
+}
+
+function updateIndLabels() {
+  const lang = currentLang;
+  ['healthcare','reinigung','sicherheit','produktion'].forEach(ind => {
+    const btn = document.getElementById('ind-' + ind);
+    if (btn && industries[ind][lang]) btn.textContent = industries[ind][lang]['ind-label'];
+  });
+}
 
 </script>
 </body>
