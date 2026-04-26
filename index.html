@@ -4,6 +4,16 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>DienstFlow – Dienstplanung für das Gesundheitswesen</title>
+<meta name="description" content="DienstFlow – Automatische Dienstplanung für das Gesundheitswesen. Schichten, Änderungen und Abwesenheiten an einem Ort – sichtbar für das ganze Team."/>
+<meta name="keywords" content="Dienstplanung, Schichtplanung, Pflegedienst, Gesundheitswesen, Dienstplan Software"/>
+<meta property="og:title" content="DienstFlow – Dienstplanung ohne Tabellen-Chaos"/>
+<meta property="og:description" content="Krankmeldung um 6 Uhr morgens. Wer springt ein? DienstFlow gibt Pflegeteams einen klaren Plan – auch wenn sich alles kurzfristig ändert."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.dienstflow.de"/>
+<meta property="og:image" content="https://www.dienstflow.de/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="DienstFlow – Dienstplanung ohne Tabellen-Chaos"/>
+<meta name="twitter:description" content="Krankmeldung um 6 Uhr morgens. Wer springt ein? DienstFlow gibt Pflegeteams einen klaren Plan."/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -156,6 +166,40 @@
     footer { flex-direction: column; text-align: center; }
     .video-inner { flex-direction: column; }
   }
+
+  /* FAQ */
+  .faq { background: white; }
+  .faq-list { max-width: 720px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: 18px 22px; text-align: left;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    color: var(--teal-dark); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.15s;
+  }
+  .faq-q:hover { background: var(--bg); }
+  .faq-q .faq-icon {
+    width: 22px; height: 22px; flex-shrink: 0;
+    background: var(--teal-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--teal); transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-q { background: var(--bg); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.2s;
+    padding: 0 22px;
+    font-size: 0.9rem; color: var(--text-soft); line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 22px 18px; }
+
 </style>
 </head>
 <body>
@@ -271,6 +315,58 @@
   </div>
 </section>
 
+
+<section class="faq">
+  <div class="text-center">
+    <span class="section-label" id="faq-label">FAQ</span>
+    <h2 class="section-title" id="faq-title">Häufige Fragen</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q1">Wie lange dauert die Einrichtung?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a1">Die erste Einrichtung übernehmen wir kostenlos für Sie — inklusive Ihrer echten Schichten, Regeln und Mitarbeitenden. In der Regel ist alles innerhalb von ein bis zwei Werktagen einsatzbereit.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q2">Brauchen meine Mitarbeitenden einen eigenen Account?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a2">Ja, Mitarbeitende erhalten einen einfachen Zugang zum Mitarbeiterportal. Dort sehen sie ihren Plan, können Abwesenheiten melden und Anfragen stellen — ohne Schulung oder technisches Wissen.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q3">Gibt es einen Vertrag oder eine Mindestlaufzeit?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a3">Nein. DienstFlow läuft monatlich kündbar. Kein Jahresvertrag, keine versteckten Kosten. Sie entscheiden nach dem Pilot, ob es passt.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q4">Was passiert mit unseren Daten?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a4">DienstFlow ist DSGVO-konform. Ihre Daten werden ausschließlich auf europäischen Servern gespeichert und niemals an Dritte weitergegeben.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q5">Funktioniert DienstFlow auch auf dem Smartphone?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a5">Ja. DienstFlow ist vollständig mobiloptimiert. Mitarbeitende und Planer können alles direkt vom Smartphone aus erledigen — ohne App-Download.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span id="faq-q6">Kann ich DienstFlow erst testen, bevor ich mich entscheide?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a6">Genau dafür ist die Demo da. Wir richten Ihr echtes Setup ein und Sie sehen DienstFlow mit Ihren eigenen Daten — ohne Risiko, ohne Verpflichtung.</div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-section" id="demo">
   <span class="section-label" id="cta-label">Kostenlos starten</span>
   <h2 class="section-title" id="cta-title">Sehen Sie DienstFlow mit Ihrem echten Setup</h2>
@@ -335,7 +431,14 @@ const T = {
     "cta-box-title":"Demo buchen","cta-box-sub":"20 Minuten — wir zeigen Ihnen, wie DienstFlow in Ihrem Betrieb aussieht.",
     "inp-name":"Ihr Name","inp-email":"E-Mail-Adresse","cta-urgency":"⚡ Wir nehmen derzeit nur 5 neue Betriebe pro Monat an.",
     "cta-submit":"Demo anfragen →","cta-note":"Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.",
-    "footer-tagline":"Entwickelt für das Gesundheitswesen","alert":"Vielen Dank! Wir melden uns innerhalb von 24 Stunden."
+    "footer-tagline":"Entwickelt für das Gesundheitswesen","alert":"Vielen Dank! Wir melden uns innerhalb von 24 Stunden.",
+    "faq-label":"FAQ","faq-title":"Häufige Fragen",
+    "faq-q1":"Wie lange dauert die Einrichtung?","faq-a1":"Die erste Einrichtung übernehmen wir kostenlos für Sie — inklusive Ihrer echten Schichten, Regeln und Mitarbeitenden. In der Regel ist alles innerhalb von ein bis zwei Werktagen einsatzbereit.",
+    "faq-q2":"Brauchen meine Mitarbeitenden einen eigenen Account?","faq-a2":"Ja, Mitarbeitende erhalten einen einfachen Zugang zum Mitarbeiterportal. Dort sehen sie ihren Plan, können Abwesenheiten melden und Anfragen stellen — ohne Schulung oder technisches Wissen.",
+    "faq-q3":"Gibt es einen Vertrag oder eine Mindestlaufzeit?","faq-a3":"Nein. DienstFlow läuft monatlich kündbar. Kein Jahresvertrag, keine versteckten Kosten. Sie entscheiden nach dem Pilot, ob es passt.",
+    "faq-q4":"Was passiert mit unseren Daten?","faq-a4":"DienstFlow ist DSGVO-konform. Ihre Daten werden ausschließlich auf europäischen Servern gespeichert und niemals an Dritte weitergegeben.",
+    "faq-q5":"Funktioniert DienstFlow auch auf dem Smartphone?","faq-a5":"Ja. DienstFlow ist vollständig mobiloptimiert. Mitarbeitende und Planer können alles direkt vom Smartphone aus erledigen — ohne App-Download.",
+    "faq-q6":"Kann ich DienstFlow erst testen, bevor ich mich entscheide?","faq-a6":"Genau dafür ist die Demo da. Wir richten Ihr echtes Setup ein und Sie sehen DienstFlow mit Ihren eigenen Daten — ohne Risiko, ohne Verpflichtung."
   },
   en: {
     lang:"en", title:"DienstFlow – Shift Planning for Healthcare",
@@ -374,7 +477,14 @@ const T = {
     "cta-box-title":"Book a demo","cta-box-sub":"20 minutes — we show you how DienstFlow works in your facility.",
     "inp-name":"Your name","inp-email":"Email address","cta-urgency":"⚡ Currently onboarding only 5 new facilities per month.",
     "cta-submit":"Request demo →","cta-note":"No commitment. Free setup included.",
-    "footer-tagline":"Built for healthcare","alert":"Thank you! We'll be in touch within 24 hours."
+    "footer-tagline":"Built for healthcare","alert":"Thank you! We'll be in touch within 24 hours.",
+    "faq-label":"FAQ","faq-title":"Frequently asked questions",
+    "faq-q1":"How long does setup take?","faq-a1":"We handle the first setup for you at no cost — including your real shifts, rules, and staff. Everything is usually ready within one to two business days.",
+    "faq-q2":"Do my employees need their own account?","faq-a2":"Yes, employees get simple access to the employee portal. They can see their schedule, report absences, and submit requests — no training or technical knowledge needed.",
+    "faq-q3":"Is there a contract or minimum term?","faq-a3":"No. DienstFlow is month-to-month, cancel anytime. No annual contract, no hidden costs. You decide after the pilot whether it's a fit.",
+    "faq-q4":"What happens to our data?","faq-a4":"DienstFlow is GDPR-compliant. Your data is stored exclusively on European servers and never shared with third parties.",
+    "faq-q5":"Does DienstFlow work on mobile?","faq-a5":"Yes. DienstFlow is fully mobile-optimised. Staff and planners can handle everything directly from their phone — no app download required.",
+    "faq-q6":"Can I try DienstFlow before committing?","faq-a6":"That's exactly what the demo is for. We set up your real configuration and you see DienstFlow with your own data — no risk, no obligation."
   },
   bhs: {
     lang:"bs", title:"DienstFlow – Planiranje smjena za zdravstvo",
@@ -413,7 +523,14 @@ const T = {
     "cta-box-title":"Zakažite demo","cta-box-sub":"20 minuta — pokazujemo vam kako DienstFlow funkcioniše u vašoj ustanovi.",
     "inp-name":"Vaše ime","inp-email":"E-mail adresa","cta-urgency":"⚡ Trenutno primamo samo 5 novih ustanova mjesečno.",
     "cta-submit":"Zatražite demo →","cta-note":"Bez obaveza. Besplatno postavljanje uključeno.",
-    "footer-tagline":"Razvijeno za zdravstveni sektor","alert":"Hvala! Javit ćemo se u roku od 24 sata."
+    "footer-tagline":"Razvijeno za zdravstveni sektor","alert":"Hvala! Javit ćemo se u roku od 24 sata.",
+    "faq-label":"FAQ","faq-title":"Često postavljana pitanja",
+    "faq-q1":"Koliko dugo traje postavljanje?","faq-a1":"Prvo postavljanje preuzimamo za vas besplatno — uključujući vaše stvarne smjene, pravila i zaposlenike. Obično je sve spremno unutar jednog do dva radna dana.",
+    "faq-q2":"Trebaju li moji zaposlenici vlastiti račun?","faq-a2":"Da, zaposlenici dobivaju jednostavan pristup portalu. Tamo mogu vidjeti raspored, prijaviti odsustva i podnijeti zahtjeve — bez obuke ili tehničkog znanja.",
+    "faq-q3":"Postoji li ugovor ili minimalni rok?","faq-a3":"Ne. DienstFlow se plaća mjesečno i može se otkazati u svakom trenutku. Nema godišnjeg ugovora, nema skrivenih troškova.",
+    "faq-q4":"Šta se dešava s našim podacima?","faq-a4":"DienstFlow je usklađen s GDPR-om. Vaši podaci se čuvaju isključivo na evropskim serverima i nikada se ne dijele s trećim stranama.",
+    "faq-q5":"Radi li DienstFlow na mobilnom telefonu?","faq-a5":"Da. DienstFlow je potpuno optimiziran za mobilne uređaje. Zaposlenici i planeri mogu sve obaviti direktno s telefona — bez preuzimanja aplikacije.",
+    "faq-q6":"Mogu li isprobati DienstFlow prije odluke?","faq-a6":"Upravo za to služi demo. Postavljamo vašu stvarnu konfiguraciju i vi vidite DienstFlow s vašim podacima — bez rizika, bez obaveza."
   }
 };
 
@@ -423,7 +540,8 @@ const textIds = ["nav-cta-text","hero-tag","hero-p","hero-btn1","hero-btn2",
   "how-label","how-title","how-sub","s1h","s1p","s2h","s2p","s3h","s3p","s4h","s4p",
   "feat-label","feat-title","f1h","f1p","f2h","f2p","f3h","f3p","f4h","f4p","f5h","f5p","f6h","f6p",
   "who-label","who-title","who-sub","w1","w2","w3","w4",
-  "cta-label","cta-title","cta-sub","cta-box-title","cta-box-sub","cta-urgency","cta-submit","cta-note","footer-tagline"];
+  "cta-label","cta-title","cta-sub","cta-box-title","cta-box-sub","cta-urgency","cta-submit","cta-note","footer-tagline",
+  "faq-label","faq-title","faq-q1","faq-a1","faq-q2","faq-a2","faq-q3","faq-a3","faq-q4","faq-a4","faq-q5","faq-a5","faq-q6","faq-a6"];
 
 let currentLang = 'de';
 
@@ -440,8 +558,22 @@ function setLang(lang) {
   document.getElementById('vid-link').href = t['vid-url'];
   document.getElementById('vid-thumb-link').href = t['vid-url'];
   document.getElementById('vid-thumb-label').textContent = t['vid-link-text'];
+  // Update meta tags
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', t['meta-desc'] || metaDesc.getAttribute('content'));
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', t['og-title'] || ogTitle.getAttribute('content'));
+
   setIndustry(currentIndustry);
 }
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
 function handleSubmit() { alert(T[currentLang].alert); }
 
 const form = document.getElementById("demo-form");
