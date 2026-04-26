@@ -31,7 +31,8 @@
     border-bottom: 1px solid var(--line); padding: 0 5%;
     display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px;
   }
-  .nav-logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--teal); text-decoration: none; flex-shrink: 0; }
+  .nav-logo { text-decoration: none; flex-shrink: 0; display: flex; align-items: center; }
+  .nav-logo img { height: 36px; width: auto; display: block; }
   .nav-right { display: flex; align-items: center; gap: 12px; }
   .lang-switcher { display: flex; gap: 4px; }
   .lang-btn {
@@ -200,19 +201,124 @@
   }
   .faq-item.open .faq-a { max-height: 200px; padding: 0 22px 18px; }
 
+
+  /* PRICING */
+  .pricing { background: var(--bg); }
+  .pricing-toggle {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin: 32px 0 48px;
+  }
+  .toggle-label { font-size: 0.9rem; color: var(--text-soft); font-weight: 500; }
+  .toggle-label.active { color: var(--teal-dark); font-weight: 600; }
+  .toggle-switch {
+    width: 48px; height: 26px; background: var(--teal);
+    border-radius: 100px; border: none; cursor: pointer;
+    position: relative; transition: background 0.2s; flex-shrink: 0;
+  }
+  .toggle-switch::after {
+    content: ''; position: absolute;
+    width: 20px; height: 20px; background: white;
+    border-radius: 50%; top: 3px; left: 3px;
+    transition: transform 0.2s;
+  }
+  .toggle-switch.annual::after { transform: translateX(22px); }
+  .annual-badge {
+    background: #d1fae5; color: #065f46;
+    font-size: 0.72rem; font-weight: 600; padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; align-items: start;
+  }
+  .pricing-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 14px; padding: 28px 24px;
+    position: relative; transition: box-shadow 0.2s;
+  }
+  .pricing-card:hover { box-shadow: 0 8px 24px rgba(13,107,122,0.1); }
+  .pricing-card.popular {
+    border: 2px solid var(--teal);
+    box-shadow: 0 8px 24px rgba(13,107,122,0.12);
+  }
+  .popular-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--teal); color: white;
+    font-size: 0.72rem; font-weight: 600; padding: 4px 14px;
+    border-radius: 100px; white-space: nowrap;
+  }
+  .plan-name {
+    font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 6px;
+  }
+  .plan-desc { font-size: 0.82rem; color: var(--text-soft); margin-bottom: 20px; line-height: 1.4; }
+  .plan-price {
+    font-family: 'Sora', sans-serif; font-size: 2.2rem; font-weight: 700;
+    color: var(--teal-dark); line-height: 1; margin-bottom: 4px;
+  }
+  .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-soft); }
+  .plan-period { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 6px; }
+  .plan-original {
+    font-size: 0.8rem; color: #9bb5bc;
+    text-decoration: line-through; margin-bottom: 20px; min-height: 18px;
+  }
+  .plan-size {
+    font-size: 0.82rem; font-weight: 600; color: var(--teal);
+    background: var(--teal-light); padding: 6px 10px;
+    border-radius: 6px; margin-bottom: 20px; display: inline-block;
+  }
+  .plan-features { list-style: none; padding: 0; margin: 0 0 24px; }
+  .plan-features li {
+    font-size: 0.875rem; color: var(--text-soft);
+    padding: 5px 0; border-bottom: 1px solid var(--line);
+    display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
+  }
+  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+  .plan-cta {
+    display: block; text-align: center;
+    padding: 12px; border-radius: 8px;
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none;
+    font-family: 'DM Sans', sans-serif; width: 100%;
+  }
+  .plan-cta.primary { background: var(--teal); color: white; }
+  .plan-cta.primary:hover { background: var(--teal-dark); }
+  .plan-cta.secondary { background: var(--teal-light); color: var(--teal); border: 1px solid var(--line); }
+  .plan-cta.secondary:hover { background: var(--aqua-light); }
+  .pricing-note {
+    text-align: center; margin-top: 32px;
+    font-size: 0.85rem; color: var(--text-soft);
+  }
+  .enterprise-card {
+    background: var(--teal-dark); color: white;
+    border-color: var(--teal-dark);
+  }
+  .enterprise-card .plan-name { color: white; }
+  .enterprise-card .plan-desc { color: rgba(255,255,255,0.65); }
+  .enterprise-card .plan-price { color: white; font-size: 1.4rem; }
+  .enterprise-card .plan-size { background: rgba(90,208,211,0.15); color: var(--aqua); }
+  .enterprise-card .plan-features li { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.1); }
+  .enterprise-card .plan-features li::before { color: var(--aqua); }
+  .enterprise-card .plan-cta { background: var(--aqua); color: var(--teal-dark); }
+  .enterprise-card .plan-cta:hover { background: #4bbfc2; }
+  .enterprise-card .plan-original { color: transparent; }
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">DienstFlow</a>
+  <a class="nav-logo" href="#"><img src="logo.png" alt="DienstFlow"/></a>
   <div class="nav-right">
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('de')">DE</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
       <button class="lang-btn" onclick="setLang('bhs')">BHS</button>
     </div>
-    <a class="nav-cta" href="#demo" id="nav-cta-text">Demo buchen</a>
+    <a class="nav-link" href="#pricing" id="nav-pricing" style="font-size:0.875rem;color:var(--teal);text-decoration:none;font-weight:600;white-space:nowrap;border:1.5px solid var(--teal);padding:8px 18px;border-radius:8px;background:white;margin-left:8px;">Preise</a>
+  <a class="nav-cta" href="#demo" id="nav-cta-text">Demo buchen</a>
   </div>
 </nav>
 
@@ -315,6 +421,97 @@
   </div>
 </section>
 
+
+
+<section class="pricing" id="pricing">
+  <div class="text-center">
+    <span class="section-label" id="pricing-label">Preise</span>
+    <h2 class="section-title" id="pricing-title">Einfach. Transparent. Nach Größe.</h2>
+    <p class="section-sub" id="pricing-sub">Keine versteckten Kosten. Keine Funktionssperren. Sie zahlen nach der Größe Ihres Teams.</p>
+  </div>
+
+  <div class="pricing-toggle">
+    <span class="toggle-label active" id="toggle-monthly">Monatlich</span>
+    <button class="toggle-switch" id="billing-toggle" onclick="toggleBilling()"></button>
+    <span class="toggle-label" id="toggle-annual">Jährlich</span>
+    <span class="annual-badge" id="annual-badge">2 Monate gratis</span>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- Starter -->
+    <div class="pricing-card">
+      <div class="plan-name" id="plan1-name">Starter</div>
+      <div class="plan-desc" id="plan1-desc">Für kleine Teams, die den Einstieg suchen</div>
+      <div class="plan-price" id="plan1-price">€99<span>/Mo</span></div>
+      <div class="plan-period" id="plan1-period">monatlich abgerechnet</div>
+      <div class="plan-original" id="plan1-original">&nbsp;</div>
+      <div class="plan-size" id="plan1-size">Kleine Teams</div>
+      <ul class="plan-features">
+        <li id="plan1-f1">Automatische Dienstplanung</li>
+        <li id="plan1-f2">Mitarbeiterportal</li>
+        <li id="plan1-f3">Abwesenheits- & Urlaubsverwaltung</li>
+        <li id="plan1-f4">Basis-Reports</li>
+        <li id="plan1-f5">E-Mail Support</li>
+      </ul>
+      <button class="plan-cta secondary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" id="plan1-cta">Demo buchen</button>
+    </div>
+
+    <!-- Growth -->
+    <div class="pricing-card popular">
+      <div class="popular-badge" id="popular-badge">Beliebteste Wahl</div>
+      <div class="plan-name" id="plan2-name">Growth</div>
+      <div class="plan-desc" id="plan2-desc">Für wachsende Betriebe mit mehreren Standorten</div>
+      <div class="plan-price" id="plan2-price">€299<span>/Mo</span></div>
+      <div class="plan-period" id="plan2-period">monatlich abgerechnet</div>
+      <div class="plan-original" id="plan2-original">&nbsp;</div>
+      <div class="plan-size" id="plan2-size">Wachsende Teams</div>
+      <ul class="plan-features">
+        <li id="plan2-f0">Alles aus Starter, plus:</li>
+        <li id="plan2-f1">Mehr Mitarbeitende &amp; Standorte</li>
+        <li id="plan2-f2">Erweiterte Reports</li>
+        <li id="plan2-f3">Prioritäts-Support</li>
+      </ul>
+      <button class="plan-cta primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" id="plan2-cta">Demo buchen</button>
+    </div>
+
+    <!-- Pro -->
+    <div class="pricing-card">
+      <div class="plan-name" id="plan3-name">Pro</div>
+      <div class="plan-desc" id="plan3-desc">Für größere Betriebe mit komplexen Anforderungen</div>
+      <div class="plan-price" id="plan3-price">€599<span>/Mo</span></div>
+      <div class="plan-period" id="plan3-period">monatlich abgerechnet</div>
+      <div class="plan-original" id="plan3-original">&nbsp;</div>
+      <div class="plan-size" id="plan3-size">Große Teams</div>
+      <ul class="plan-features">
+        <li id="plan3-f0">Alles aus Growth, plus:</li>
+        <li id="plan3-f1">Noch mehr Mitarbeitende &amp; Standorte</li>
+        <li id="plan3-f2">Individuelle Reports &amp; Exports</li>
+        <li id="plan3-f3">Schnellste Reaktionszeit</li>
+      </ul>
+      <button class="plan-cta secondary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" id="plan3-cta">Demo buchen</button>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="pricing-card enterprise-card">
+      <div class="plan-name" id="plan4-name">Enterprise</div>
+      <div class="plan-desc" id="plan4-desc">Für große Organisationen mit individuellen Anforderungen</div>
+      <div class="plan-price" id="plan4-price">Individuell</div>
+      <div class="plan-period" id="plan4-period">&nbsp;</div>
+      <div class="plan-original" id="plan4-original">&nbsp;</div>
+      <div class="plan-size" id="plan4-size">Unbegrenzte Mitarbeitende & Standorte</div>
+      <ul class="plan-features">
+        <li id="plan4-f1">Unbegrenzte Mitarbeitende &amp; Standorte</li>
+        <li id="plan4-f3">Individuelle Einrichtung & Onboarding</li>
+        <li id="plan4-f4">API-Zugang & Integrationen</li>
+        <li id="plan4-f5">VIP-Betreuung &amp; höchste Priorität</li>
+      </ul>
+      <button class="plan-cta" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" id="plan4-cta">Kontakt aufnehmen</button>
+    </div>
+
+  </div>
+  <p class="pricing-note" id="pricing-note">Alle Pläne monatlich kündbar. Kostenlose Ersteinrichtung in jedem Plan inklusive.</p>
+</section>
 
 <section class="faq">
   <div class="text-center">
@@ -431,7 +628,7 @@ const T = {
     "cta-box-title":"Demo buchen","cta-box-sub":"20 Minuten — wir zeigen Ihnen, wie DienstFlow in Ihrem Betrieb aussieht.",
     "inp-name":"Ihr Name","inp-email":"E-Mail-Adresse","cta-urgency":"⚡ Wir nehmen derzeit nur 5 neue Betriebe pro Monat an.",
     "cta-submit":"Demo anfragen →","cta-note":"Keine Verpflichtung. Kostenlose Ersteinrichtung inklusive.",
-    "footer-tagline":"Entwickelt für das Gesundheitswesen","alert":"Vielen Dank! Wir melden uns innerhalb von 24 Stunden.",
+    "nav-pricing":"Preise","footer-tagline":"Entwickelt für das Gesundheitswesen","alert":"Vielen Dank! Wir melden uns innerhalb von 24 Stunden.",
     "faq-label":"FAQ","faq-title":"Häufige Fragen",
     "faq-q1":"Wie lange dauert die Einrichtung?","faq-a1":"Die erste Einrichtung übernehmen wir kostenlos für Sie — inklusive Ihrer echten Schichten, Regeln und Mitarbeitenden. In der Regel ist alles innerhalb von ein bis zwei Werktagen einsatzbereit.",
     "faq-q2":"Brauchen meine Mitarbeitenden einen eigenen Account?","faq-a2":"Ja, Mitarbeitende erhalten einen einfachen Zugang zum Mitarbeiterportal. Dort sehen sie ihren Plan, können Abwesenheiten melden und Anfragen stellen — ohne Schulung oder technisches Wissen.",
@@ -477,7 +674,7 @@ const T = {
     "cta-box-title":"Book a demo","cta-box-sub":"20 minutes — we show you how DienstFlow works in your facility.",
     "inp-name":"Your name","inp-email":"Email address","cta-urgency":"⚡ Currently onboarding only 5 new facilities per month.",
     "cta-submit":"Request demo →","cta-note":"No commitment. Free setup included.",
-    "footer-tagline":"Built for healthcare","alert":"Thank you! We'll be in touch within 24 hours.",
+    "nav-pricing":"Pricing","footer-tagline":"Built for healthcare","alert":"Thank you! We'll be in touch within 24 hours.",
     "faq-label":"FAQ","faq-title":"Frequently asked questions",
     "faq-q1":"How long does setup take?","faq-a1":"We handle the first setup for you at no cost — including your real shifts, rules, and staff. Everything is usually ready within one to two business days.",
     "faq-q2":"Do my employees need their own account?","faq-a2":"Yes, employees get simple access to the employee portal. They can see their schedule, report absences, and submit requests — no training or technical knowledge needed.",
@@ -523,7 +720,7 @@ const T = {
     "cta-box-title":"Zakažite demo","cta-box-sub":"20 minuta — pokazujemo vam kako DienstFlow funkcioniše u vašoj ustanovi.",
     "inp-name":"Vaše ime","inp-email":"E-mail adresa","cta-urgency":"⚡ Trenutno primamo samo 5 novih ustanova mjesečno.",
     "cta-submit":"Zatražite demo →","cta-note":"Bez obaveza. Besplatno postavljanje uključeno.",
-    "footer-tagline":"Razvijeno za zdravstveni sektor","alert":"Hvala! Javit ćemo se u roku od 24 sata.",
+    "nav-pricing":"Cijene","footer-tagline":"Razvijeno za zdravstveni sektor","alert":"Hvala! Javit ćemo se u roku od 24 sata.",
     "faq-label":"FAQ","faq-title":"Često postavljana pitanja",
     "faq-q1":"Koliko dugo traje postavljanje?","faq-a1":"Prvo postavljanje preuzimamo za vas besplatno — uključujući vaše stvarne smjene, pravila i zaposlenike. Obično je sve spremno unutar jednog do dva radna dana.",
     "faq-q2":"Trebaju li moji zaposlenici vlastiti račun?","faq-a2":"Da, zaposlenici dobivaju jednostavan pristup portalu. Tamo mogu vidjeti raspored, prijaviti odsustva i podnijeti zahtjeve — bez obuke ili tehničkog znanja.",
@@ -534,7 +731,7 @@ const T = {
   }
 };
 
-const textIds = ["nav-cta-text","hero-tag","hero-p","hero-btn1","hero-btn2",
+const textIds = ["nav-cta-text","nav-pricing","hero-tag","hero-p","hero-btn1","hero-btn2",
   "pain-label","pain-title","pain-sub","p1h","p1p","p2h","p2p","p3h","p3p","p4h","p4p",
   "vid-label","vid-title","vid-p","vid-link-text",
   "how-label","how-title","how-sub","s1h","s1p","s2h","s2p","s3h","s3p","s4h","s4p",
@@ -565,6 +762,153 @@ function setLang(lang) {
   if (ogTitle) ogTitle.setAttribute('content', t['og-title'] || ogTitle.getAttribute('content'));
 
   setIndustry(currentIndustry);
+  applyPricingTranslations(lang);
+}
+
+
+// ── PRICING BILLING TOGGLE ──────────────────────────────────────
+let isAnnual = false;
+
+const prices = {
+  monthly:  { p1: '€99',  p2: '€299', p3: '€599' },
+  annual:   { p1: '€83',  p2: '€249', p3: '€499' },
+  original: { p1: '€99',  p2: '€299', p3: '€599' }
+};
+
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  const toggle = document.getElementById('billing-toggle');
+  toggle.classList.toggle('annual', isAnnual);
+
+  const lang = currentLang;
+  const perMo = lang === 'en' ? '/Mo' : lang === 'bhs' ? '/mj' : '/Mo';
+  const periodTxt = isAnnual
+    ? (lang === 'en' ? 'billed annually' : lang === 'bhs' ? 'godišnja naplata' : 'jährlich abgerechnet')
+    : (lang === 'en' ? 'billed monthly'  : lang === 'bhs' ? 'mjesečna naplata'  : 'monatlich abgerechnet');
+
+  const set = isAnnual ? prices.annual : prices.monthly;
+
+  ['1','2','3'].forEach(n => {
+    const priceEl = document.getElementById('plan'+n+'-price');
+    const periodEl = document.getElementById('plan'+n+'-period');
+    const origEl = document.getElementById('plan'+n+'-original');
+    if (priceEl) priceEl.innerHTML = set['p'+n] + '<span>'+perMo+'</span>';
+    if (periodEl) periodEl.textContent = periodTxt;
+    if (origEl) origEl.textContent = isAnnual ? prices.original['p'+n]+perMo : '\u00a0';
+  });
+
+  // Toggle label styles
+  document.getElementById('toggle-monthly').classList.toggle('active', !isAnnual);
+  document.getElementById('toggle-annual').classList.toggle('active', isAnnual);
+}
+
+// Pricing translations
+const pricingT = {
+  de: {
+    "pricing-label": "Preise",
+    "pricing-title": "Einfach. Transparent. Nach Größe.",
+    "pricing-sub": "Keine versteckten Kosten. Keine Funktionssperren. Sie zahlen nach der Größe Ihres Teams.",
+    "toggle-monthly": "Monatlich", "toggle-annual": "Jährlich", "annual-badge": "2 Monate gratis",
+    "popular-badge": "Beliebteste Wahl",
+    "plan1-name": "Starter", "plan1-desc": "Für kleine Teams, die den Einstieg suchen",
+    "plan1-size": "Kleine Teams",
+    "plan1-f1": "Automatische Dienstplanung", "plan1-f2": "Abwesenheits- & Urlaubsverwaltung",
+    "plan1-f3": "Mitarbeiterportal", "plan1-f4": "Basis-Reports", "plan1-f5": "E-Mail Support",
+    "plan1-cta": "Demo buchen",
+    "plan2-name": "Growth", "plan2-desc": "Für wachsende Betriebe mit mehreren Standorten",
+    "plan2-size": "Wachsende Teams",
+    "plan2-f0": "Alles aus Starter, plus:", "plan2-f1": "Mehr Mitarbeitende & Standorte",
+    "plan2-f2": "Erweiterte Reports", "plan2-f3": "Prioritäts-Support",
+    "plan2-cta": "Demo buchen",
+    "plan3-name": "Pro", "plan3-desc": "Für größere Betriebe mit komplexen Anforderungen",
+    "plan3-size": "Große Teams",
+    "plan3-f0": "Alles aus Growth, plus:", "plan3-f1": "Noch mehr Mitarbeitende & Standorte",
+    "plan3-f2": "Individuelle Reports & Exports", "plan3-f3": "Schnellste Reaktionszeit",
+    "plan3-cta": "Demo buchen",
+    "plan4-name": "Enterprise", "plan4-desc": "Für große Organisationen mit individuellen Anforderungen",
+    "plan4-size": "Keine Limits",
+    "plan4-f1": "Unbegrenzte Mitarbeitende & Standorte", "plan4-f2": "Persönlicher Einführungs-Support",
+    "plan4-f3": "Vollständig auf Ihre Bedürfnisse zugeschnitten", "plan4-f4": "API-Zugang & Integrationen",
+    "plan4-f5": "VIP-Betreuung & höchste Priorität",
+    "plan4-cta": "Kontakt aufnehmen",
+    "pricing-note": "Alle Pläne monatlich kündbar. Kostenlose Ersteinrichtung in jedem Plan inklusive."
+  },
+  en: {
+    "pricing-label": "Pricing",
+    "pricing-title": "Simple. Transparent. By team size.",
+    "pricing-sub": "No hidden costs. No feature locks. You pay based on the size of your team.",
+    "toggle-monthly": "Monthly", "toggle-annual": "Annual", "annual-badge": "2 months free",
+    "popular-badge": "Most popular",
+    "plan1-name": "Starter", "plan1-desc": "For small teams getting started",
+    "plan1-size": "Small teams",
+    "plan1-f1": "Automatic shift scheduling", "plan1-f2": "Absence & holiday management",
+    "plan1-f3": "Employee portal", "plan1-f4": "Basic reports", "plan1-f5": "Email support",
+    "plan1-cta": "Book demo",
+    "plan2-name": "Growth", "plan2-desc": "For growing operations with multiple locations",
+    "plan2-size": "Growing teams",
+    "plan2-f0": "Everything in Starter, plus:", "plan2-f1": "More employees & locations",
+    "plan2-f2": "Advanced reports", "plan2-f3": "Priority support",
+    "plan2-cta": "Book demo",
+    "plan3-name": "Pro", "plan3-desc": "For larger operations with complex requirements",
+    "plan3-size": "Large teams",
+    "plan3-f0": "Everything in Growth, plus:", "plan3-f1": "Even more employees & locations",
+    "plan3-f2": "Custom reports & exports", "plan3-f3": "Fastest response time",
+    "plan3-cta": "Book demo",
+    "plan4-name": "Enterprise", "plan4-desc": "For large organisations with custom needs",
+    "plan4-size": "No limits",
+    "plan4-f1": "Unlimited employees & locations", "plan4-f2": "Personal onboarding support",
+    "plan4-f3": "Fully tailored to your needs", "plan4-f4": "API access & integrations",
+    "plan4-f5": "VIP treatment & first priority",
+    "plan4-cta": "Get in touch",
+    "pricing-note": "All plans cancel anytime. Free setup included in every plan."
+  },
+  bhs: {
+    "pricing-label": "Cijene",
+    "pricing-title": "Jednostavno. Transparentno. Po veličini tima.",
+    "pricing-sub": "Bez skrivenih troškova. Bez zaključanih funkcija. Plaćate prema veličini vašeg tima.",
+    "toggle-monthly": "Mjesečno", "toggle-annual": "Godišnje", "annual-badge": "2 mjeseca gratis",
+    "popular-badge": "Najpopularniji izbor",
+    "plan1-name": "Starter", "plan1-desc": "Za male timove koji traže jednostavan početak",
+    "plan1-size": "Mali timovi",
+    "plan1-f1": "Automatsko planiranje smjena", "plan1-f2": "Upravljanje odsustvima i godišnjim odmorom",
+    "plan1-f3": "Portal za zaposlenike", "plan1-f4": "Osnovni izvještaji", "plan1-f5": "E-mail podrška",
+    "plan1-cta": "Zakažite demo",
+    "plan2-name": "Growth", "plan2-desc": "Za rastuće firme s više lokacija",
+    "plan2-size": "Rastuće firme",
+    "plan2-f0": "Sve iz Starter plana, plus:", "plan2-f1": "Više zaposlenika i lokacija",
+    "plan2-f2": "Napredni izvještaji", "plan2-f3": "Prioritetna podrška",
+    "plan2-cta": "Zakažite demo",
+    "plan3-name": "Pro", "plan3-desc": "Za veće firme s kompleksnim zahtjevima",
+    "plan3-size": "Veliki timovi",
+    "plan3-f0": "Sve iz Growth plana, plus:", "plan3-f1": "Još više zaposlenika i lokacija",
+    "plan3-f2": "Individualni izvještaji i exporti", "plan3-f3": "Najbrže vrijeme odgovora",
+    "plan3-cta": "Zakažite demo",
+    "plan4-name": "Enterprise", "plan4-desc": "Za velike organizacije s individualnim zahtjevima",
+    "plan4-size": "Bez limita",
+    "plan4-f1": "Neograničeni zaposlenici i lokacije", "plan4-f2": "Personalna podrška pri uvođenju",
+    "plan4-f3": "Potpuno prilagođeno vašim potrebama", "plan4-f4": "API pristup & integracije",
+    "plan4-f5": "VIP tretman & najviši prioritet",
+    "plan4-cta": "Kontaktirajte nas",
+    "pricing-note": "Svi planovi se mogu otkazati mjesečno. Besplatno postavljanje uključeno u svaki plan."
+  }
+};
+
+const pricingIds = ["pricing-label","pricing-title","pricing-sub","toggle-monthly","toggle-annual","annual-badge",
+  "popular-badge",
+  "plan1-name","plan1-desc","plan1-size","plan1-f1","plan1-f2","plan1-f3","plan1-f4","plan1-f5","plan1-cta",
+  "plan2-name","plan2-desc","plan2-size","plan2-f0","plan2-f1","plan2-f2","plan2-f3","plan2-cta",
+  "plan3-name","plan3-desc","plan3-size","plan3-f0","plan3-f1","plan3-f2","plan3-f3","plan3-cta",
+  "plan4-name","plan4-desc","plan4-size","plan4-f1","plan4-f3","plan4-f4","plan4-f5","plan4-cta",
+  "pricing-note"];
+
+function applyPricingTranslations(lang) {
+  const t = pricingT[lang] || pricingT['de'];
+  pricingIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && t[id]) el.textContent = t[id];
+  });
+  // Reset prices to current billing state
+  if (isAnnual) { toggleBilling(); toggleBilling(); } // re-apply labels
 }
 
 function toggleFaq(btn) {
